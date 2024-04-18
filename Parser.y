@@ -16,7 +16,7 @@
 
 %%
 trunk:
-| trunk expr SEMICOL {printf("%d\n", $1);}
+| trunk expr SEMICOL {printf("= %d\n", $1);}
 ;
 
 expr: factor
