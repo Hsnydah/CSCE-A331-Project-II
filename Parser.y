@@ -2,13 +2,21 @@
     #include <stdio.h>    
 %}
 
-%token ID, INT, FLOAT
-%token ADD, SUB, DIV, MUL, EQ
-%token SEMICOL, COL, LPAREN, RPAREN, LBRACE, RBRACE, LBRACKET, RBRACKET
+%union {
+    int ival;
+    float fval;
+} 
+
+%token<ival> INT
+%left ADD, SUB, DIV, MUL, EQ
+%token SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
+
+%type<ival> expr, factor, term
+%start trunk
 
 %%
-idk:
-| idk expr SEMICOL {printf("%d\n", $1);}
+trunk:
+| trunk expr SEMICOL {printf("%d\n", $1);}
 ;
 
 expr: factor
@@ -21,7 +29,7 @@ factor: term
 | factor DIV term {$$ = $1 / $3;}
 ;
 
-term: INT || FLOAT
+term: INT
 | term {$$ = $2 >= 0? $2 : - $2;}
 ;
 %%
