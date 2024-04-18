@@ -1,28 +1,24 @@
 %{
+    #include <stdio.h>
+    #define YY_DECL int yylex()
 %}
 
 %%
-[ ]                     ;
-[\n]                    printf("\n");
-[a-zA-Z_][a-zA-Z0-9_]*  printf("ID");
-[0-9]+                  printf("INT");
-[0-9]+"."[0-9]*         printf("FLOAT");
-"+"                     printf("PLUS");
-"-"                     printf("MINUS");
-"*"                     printf("TIMES");
-"/"                     printf("DIVIDE");
-"="                     printf("EQUALS");
-";"                     printf("END");
-"("                     printf("LPAREN");
-")"                     printf("RPAREN");
-"{"                     printf("LBRACE");
-"}"                     printf("RBRACE");
-"["                     printf("LBRACKET");
-"]"                     printf("RBRACKET");
+[ \n\t]                 ;
+[a-zA-Z_][a-zA-Z0-9_]*  {return ID;}
+[0-9]+                  {return INT;}
+[0-9]+"."[0-9]*         {return FLOAT;}
+"+"                     {return ADD;}
+"-"                     {return SUB;}
+"*"                     {return MUL;}
+"/"                     {return DIV;}
+"="                     {return EQ;}
+";"                     {return SEMICOL;}
+":"                     {return COL;}
+"("                     {return LPAREN;}
+")"                     {return RPAREN;}
+"{"                     {return LBRACE;}
+"}"                     {return RBRACE;}
+"["                     {return LBRACKET;}
+"]"                     {return RBRACKET;}
 %%
-
-int main(int argc, char **argv)
-{
-    yylex();
-    return 0;
-}

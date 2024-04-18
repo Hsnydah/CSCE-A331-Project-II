@@ -1,5 +1,8 @@
 %{
-    #include <stdio.h>    
+    #include <stdio.h>
+    #include <std.lib.h>
+    extern int yylex();
+    extern int yyparse();
 %}
 
 %union {
