@@ -30,7 +30,7 @@ factor: term
 ;
 
 term: INT
-| term {$$ = $1;}
+| term {$$ = $2 >= 0? $2 :- $2;}
 ;
 %%
 
