@@ -8,10 +8,10 @@
 } 
 
 %token<ival> INT
-%left ADD, SUB, DIV, MUL, EQ
+%left ADD SUB DIV MUL EQ
 %token SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
 
-%type<ival> expr, factor, term
+%type<ival> expr factor term
 %start trunk
 
 %%
@@ -30,7 +30,7 @@ factor: term
 ;
 
 term: INT
-| term {$$ = $2 >= 0? $2 : - $2;}
+| term {$$ = $1;}
 ;
 %%
 
