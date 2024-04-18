@@ -19,7 +19,7 @@
 
 %%
 trunk:
-| trunk expr SEMICOL {printf("= %d\n", $1);}
+| trunk expr SEMICOL {printf("= %i\n", $1);}
 ;
 
 expr: factor
@@ -33,7 +33,7 @@ factor: term
 ;
 
 term: INT
-| term {$$ = $2 >= 0? $2 :- $2;}
+| EQ term {$$ = $1}
 ;
 %%
 
