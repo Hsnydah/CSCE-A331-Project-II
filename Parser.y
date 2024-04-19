@@ -1,7 +1,6 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
-    #include <bits/stdc++.h>
     #include <math.h>
     extern int yylex();
     extern int yyparse();
@@ -35,7 +34,7 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: INT PER INT           {int len = tostring($3).length(); $$ = $1 + (float)pow($3, len); printf("%f\n", $$);}
+flt_expr: INT PER INT           {$$ = $1 + (0.1 * $3); printf("%f\n%d\n", $$, sizeof($3));}
     | expr ADD flt_expr         {$$ = $1 + $3;}
     | expr SUB flt_expr         {$$ = $1 - $3;}
     | expr MUL flt_expr         {$$ = $1 * $3;}
