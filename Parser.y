@@ -6,18 +6,14 @@
     extern FILE* yyin;
 %}
 
-%union {
-    int ival;
-    float fval;
-} 
-
-%token<ival> INT
-%token<fval> FLOAT
+%define api.value.type union
+%token<int> INT
+%token<float> FLOAT
 %left ADD SUB DIV MUL EQ
 %token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
-%type<ival> expr
-%type<fval> flt_expr
+%type<int> expr
+%type<float> flt_expr
 %start trunk
 
 %%
