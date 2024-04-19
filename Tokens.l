@@ -1,9 +1,8 @@
-%option noyywrap
+%option noyywrap nodefault yylineno
 
 %{
     #include <stdio.h>
     #include "Parser.tab.h"
-    #define YY_DECL double yylex()
 %}
 
 %%
