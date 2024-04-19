@@ -33,7 +33,7 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: FLOAT                 {$$ = $1;}
+flt_expr: FLOAT                 {$$ = (float)$1;}
     | expr ADD flt_expr         {$$ = (float)$1 + $3;}
     | expr SUB flt_expr         {$$ = (float)$1 - $3;}
     | expr MUL flt_expr         {$$ = (float)$1 * $3;}
