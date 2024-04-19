@@ -15,7 +15,7 @@
 %left ADD SUB DIV MUL EQ
 %token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
-%type<dval> expr
+%type<a> expr
 %start trunk
 
 %%
