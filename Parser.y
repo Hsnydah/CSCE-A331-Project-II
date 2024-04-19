@@ -32,12 +32,6 @@ expr:
 ;
 %%
 
-void yyerror(char *s)
-{
-    fprintf(stderr, "error: %s\n", s);
-    exit(1);
-}
-
 int main (int argc, char **argv)
 {
     yyin = stdin;
