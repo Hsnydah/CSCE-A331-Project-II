@@ -1,0 +1,3 @@
+bison   -d    Parser.y
+flex    Tokens.l
+gcc Parser.tab.c    lex.yy.c    -o  Compiler    -lm
