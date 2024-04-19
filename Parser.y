@@ -6,7 +6,7 @@
     extern FILE* yyin;
 %}
 
-%union {
+%union YYSTYPE {
     int ival;
     float fval;
 } 
