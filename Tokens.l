@@ -10,12 +10,12 @@
 [ \t]                       ;
 \n                          {return NL;}
 ([\d]+\.[\d]+)?|(\.?[\d]+)? {yylval.dval = atoi(yytext); return NUM;}
-\+                          {return ADD;}
-\-                          {return SUB;}
-\*                          {return MUL;}
-\/                          {return DIV;}
-\=                          {return EQ;}
-\:                          {return COL;}
+\+?                          {return ADD;}
+\-?                          {return SUB;}
+\*?                          {return MUL;}
+\/?                          {return DIV;}
+\=?                          {return EQ;}
+\:?                          {return COL;}
 "("                         {return LPAREN;}
 ")"                         {return RPAREN;}
 "{"                         {return LBRACE;}
