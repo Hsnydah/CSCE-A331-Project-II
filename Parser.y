@@ -16,25 +16,37 @@
 %left ADD SUB DIV MUL EQ
 %token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
-%type<ival> expr factor term
+%type<ival> expr flt_expr
 %start trunk
 
 %%
 trunk: NL
-| expr NL {printf("= %i\n", $1);}
+    | expr NL                   {printf("= %i\n", $1);}
+    | flt_expr NL               {printf("= %i\n", $1);}
 ;
 
-expr: factor            {$$ = $1;}
-| expr ADD factor       {$$ = $1 + $3;}
-| expr SUB factor       {$$ = $1 - $3;}
+expr: INT                       {$$ = $1;}
+    | expr ADD expr             {$$ = $1 + $3;}
+    | expr SUB expr             {$$ = $1 - $3;}
+    | expr MUL expr             {$$ = $1 * $3;}
+    | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-factor: term            {$$ = $1;}
-| factor MUL term       {$$ = $1 * $3;}
-| factor DIV term       {$$ = $1 / $3;}
-;
-
-term: INT               {$$ = $1;}
+flt_expr: FLOAT                 {$$ = $1;}
+    | expr ADD flt_expr         {$$ = $1 + $3;}
+    | expr SUB flt_expr         {$$ = $1 - $3;}
+    | expr MUL flt_expr         {$$ = $1 * $3;}
+    | expr DIV flt_expr         {$$ = $1 / $3;}
+    | flt_expr ADD expr         {$$ = $1 + $3;}
+    | flt_expr SUB expr         {$$ = $1 - $3;}
+    | flt_expr MUL expr         {$$ = $1 * $3;}
+    | flt_expr DIV expr         {$$ = $1 / $3;}
+    | flt_expr ADD flt_expr     {$$ = $1 + $3;}
+    | flt_expr SUB flt_expr     {$$ = $1 - $3;}
+    | flt_expr MUL flt_expr     {$$ = $1 * $3;}
+    | flt_expr DIV flt_expr     {$$ = $1 / $3;}
+    | expr DIV expr             {$$ = $1 / (float)$3;}
+    | LPAREN flt_expr RPAREN    {$$ = $2;}
 ;
 %%
 
