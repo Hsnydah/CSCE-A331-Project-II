@@ -24,12 +24,12 @@ trunk:
 | trunk expr    {printf("= %d\n", $2);}
 ;
 
-expr: factor            {$$ = $1;}
+expr: factor
 | expr ADD factor       {$$ = $1 + $3;}
 | expr SUB factor       {$$ = $1 - $3;}
 ;
 
-factor: term            {$$ = $1;}
+factor: term
 | factor MUL term       {$$ = $1 * $3;}
 | factor DIV term       {$$ = $1 / $3;}
 ;
