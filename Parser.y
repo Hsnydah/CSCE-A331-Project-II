@@ -1,7 +1,9 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
+    #define YYSTYPE double
     extern int yylex();
+    extern int yyparse();
     extern FILE* yyin;
     
 %}
