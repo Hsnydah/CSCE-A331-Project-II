@@ -4,21 +4,20 @@
     extern int yylex();
     extern int yyparse();
     extern FILE* yyin;
-    #define YYSTYPE float
 %}
 
 %union {
     int ival;
-    float fval;
+    double dval;
 } 
 
 %token<ival> INT
-%token<fval> FLOAT
+%token<dval> FLOAT
 %left ADD SUB DIV MUL EQ
 %token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
 %type<ival> expr
-%type<fval> flt_expr
+%type<dval> flt_expr
 %start trunk
 
 %%
@@ -47,7 +46,7 @@ flt_expr: FLOAT                 {$$ = $1;}
     | flt_expr SUB flt_expr     {$$ = $1 - $3;}
     | flt_expr MUL flt_expr     {$$ = $1 * $3;}
     | flt_expr DIV flt_expr     {$$ = $1 / $3;}
-    | expr DIV expr             {$$ = $1 / (float)$3;}
+    | expr DIV expr             {$$ = $1 / (double)$3;}
     | LPAREN flt_expr RPAREN    {$$ = $2;}
 ;
 %%
