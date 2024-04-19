@@ -9,8 +9,8 @@
 %%
 [ \t]                       ;
 \n                          {return NL;}
-([0-9]*\.[0-9]+|[0-9]+\.)   {yylval.float = atoi(yytext); printf("%f\n", yylval.float); return FLOAT;}
-[0-9]+                      {yylval.int = atoi(yytext); return INT;}
+([0-9]*\.[0-9]+|[0-9]+\.)   {yylval.fval = atoi(yytext); printf("%f\n", yylval.fval); return FLOAT;}
+[0-9]+                      {yylval.ival = atoi(yytext); return INT;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
 "*"                         {return MUL;}
