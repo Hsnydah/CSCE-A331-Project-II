@@ -33,14 +33,14 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: FLOAT                 {$$ = $1; printf("FLOAT");}
+flt_expr: FLOAT                 {$$ = $1;}
     | expr ADD flt_expr         {$$ = $1 + $3;}
     | expr SUB flt_expr         {$$ = $1 - $3;}
     | expr MUL flt_expr         {$$ = $1 * $3;}
     | expr DIV flt_expr         {$$ = $1 / $3;}
     | flt_expr ADD expr         {$$ = $1 + $3;}
     | flt_expr SUB expr         {$$ = $1 - $3;}
-    | flt_expr MUL expr         {$$ = $1 * $3;}
+    | flt_expr MUL expr         {$$ = $1 * (float)$3;}
     | flt_expr DIV expr         {$$ = $1 / $3;}
     | flt_expr ADD flt_expr     {$$ = $1 + $3;}
     | flt_expr SUB flt_expr     {$$ = $1 - $3;}
