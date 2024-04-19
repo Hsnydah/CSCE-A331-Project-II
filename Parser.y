@@ -1,6 +1,6 @@
 %{
     #include <stdio.h>
-    #include <std.lib.h>
+    #include <stdlib.h>
     extern int yylex();
     extern int yyparse();
     extern FILE* yyin;
@@ -14,7 +14,7 @@
 %token<ival> INT
 %token<fval> FLOAT
 %left ADD SUB DIV MUL EQ
-%token SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
+%token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
 
 %type<ival> expr factor term
 %start trunk
