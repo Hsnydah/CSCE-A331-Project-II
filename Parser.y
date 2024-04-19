@@ -16,12 +16,12 @@
 %left ADD SUB DIV MUL EQ
 %token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
-%type<dval> expr trunk
+%type<dval> expr
 %start trunk
 
 %%
 trunk: NL
-    | expr NL               {printf($1);}
+    | expr NL               {printf("%f\n" $1);}
 ;
 
 expr: 
