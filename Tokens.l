@@ -9,7 +9,7 @@
 %%
 [ \t]                   ;
 \n                      {return NL;}
-[9]+                  {yylval.ival = atoi(yytext); return INT;}
+[0-9]+                  {yylval.ival = atoi(yytext); return INT;}
 [0-9]+(\.[0-9]+)        {yylval.fval = atoi(yytext); return FLOAT;}
 "+"                     {return ADD;}
 "-"                     {return SUB;}

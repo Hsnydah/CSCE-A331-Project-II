@@ -22,7 +22,7 @@
 
 %%
 trunk: NL
-    | expr NL                   {printf("= %f\n", $1);}
+    | expr NL                   {printf("= %i\n", $1);}
     | flt_expr NL               {printf("= %f\n", $1);}
 ;
 
