@@ -14,14 +14,14 @@
 %token<ival> INT
 %token<fval> FLOAT
 %left ADD SUB DIV MUL EQ
-%token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
+%token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
 %type<ival> expr factor term
 %start trunk
 
 %%
 trunk:
-| trunk expr    {printf("= %d\n", $2);}
+| trunk expr NL {printf("= %d\n", $2);}
 ;
 
 expr: factor
