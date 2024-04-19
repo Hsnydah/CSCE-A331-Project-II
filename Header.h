@@ -12,7 +12,7 @@ struct numval {
  double number;
 };
 /* build an AST */
-struct ast *newast(int nodetype, struct ast *l, struct ast *r);
+struct ast *newast(char* nodetype, struct ast *l, struct ast *r);
 struct ast *newnum(double d);
 /* evaluate an AST */
 double eval(struct ast *);
