@@ -9,10 +9,10 @@
 %%
 [ \t]                       ;
 \n                          {return NL;}
-([\d]+\.[\d]+)|([\d]+)      {yylval.dval = atoi(yytext); return NUM; print("%f\n", yylval.dval);}
+([\d]+\.[\d]+)|([\d]+)      {yylval.dval = atoi(yytext); return NUM; printf("%f\n", yylval.dval);}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
-\*                         {return MUL; print("MUL");}
+\*                         {return MUL; printf("MUL");}
 "/"                         {return DIV;}
 "="                         {return EQ;}
 ":"                         {return COL;}
