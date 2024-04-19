@@ -35,7 +35,7 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: INT PER INT           {$$ = $1 + (float)pow($3, (int)std::tostring($3).length()); printf("%f\n", $$);}
+flt_expr: INT PER INT           {$$ = $1 + (float)pow($3, std::tostring($3).length()); printf("%f\n", $$);}
     | expr ADD flt_expr         {$$ = $1 + $3;}
     | expr SUB flt_expr         {$$ = $1 - $3;}
     | expr MUL flt_expr         {$$ = $1 * $3;}
