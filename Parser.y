@@ -21,7 +21,7 @@
 
 %%
 trunk: NL
-    | expr NL               {printf("%f\n" $1);}
+    | expr NL               {printf("%f\n", $1);}
 ;
 
 expr: 
