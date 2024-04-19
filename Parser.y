@@ -34,7 +34,7 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: INT PER INT           {$$ = $1 + (0.1 * $3); printf("%f\n%d\n", $$, sizeof($3));}
+flt_expr: INT PER INT           {$$ = $1 + (0.1 * $3); printf("%f\n%d\n%d\n", $$, $1, $3);}
     | expr ADD flt_expr         {$$ = $1 + $3;}
     | expr SUB flt_expr         {$$ = $1 - $3;}
     | expr MUL flt_expr         {$$ = $1 * $3;}
