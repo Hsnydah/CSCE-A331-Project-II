@@ -21,7 +21,7 @@
 
 %%
 trunk:
-| trunk expr SEMICOL    {printf("= %i\n", $2);}
+| trunk expr    {printf("= %i\n", $2);}
 ;
 
 expr: factor
@@ -38,12 +38,19 @@ term: INT               {$$ = $1;}
 ;
 %%
 
-main (int argc, char **argv)
+int main (int argc, char **argv)
 {
-    yyparse();
+    yyin = stdin;
+
+    do {
+		yyparse();
+	} while(!feof(yyin));
+
+    return 0;
 }
 
-yyerror(char *s)
+void yyerror(char *s)
 {
     fprintf(stderr, "error: %s\n", s);
+    exit(1);
 }
