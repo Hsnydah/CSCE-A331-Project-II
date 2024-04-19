@@ -2,9 +2,6 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <math.h>
-    extern int yylex();
-    extern int yyparse();
-    extern FILE* yyin;
     
 %}
 
