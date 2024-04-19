@@ -24,7 +24,7 @@ trunk: NL
     | expr NL               {printf("= %f\n", $1);}
 ;
 
-expr: NUM                   {$$ = $1;}
+expr: NUM                   {$$ = newnum($1);}
     | expr ADD expr         {$$ = $1 + $3;}
     | expr SUB expr         {$$ = $1 - $3;}
     | expr MUL expr         {$$ = $1 * $3;}
