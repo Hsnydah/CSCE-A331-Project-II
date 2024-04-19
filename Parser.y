@@ -20,7 +20,7 @@
 %start trunk
 
 %%
-trunk:
+trunk: NL
 | trunk expr NL {printf("= %d\n", $2);}
 ;
 
