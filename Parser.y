@@ -2,12 +2,11 @@
     #include <stdio.h>
     #include <stdlib.h>
     extern int yylex();
-    extern int yyparse();
     extern FILE* yyin;
     
 %}
 
-%union value {
+%union{
     int ival;
     float fval;
 }
