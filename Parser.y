@@ -4,12 +4,13 @@
     extern int yylex();
     extern int yyparse();
     extern FILE* yyin;
+    
 %}
 
-%union YYSTYPE {
+%union value {
     int ival;
     float fval;
-} 
+}
 
 %token<ival> INT
 %token<fval> FLOAT
