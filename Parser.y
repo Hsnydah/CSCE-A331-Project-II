@@ -2,10 +2,12 @@
     #include <stdio.h>
     #include <stdlib.h>
     #include <math.h>
+    #include "Header.h"
     extern FILE* yyin;
 %}
 
 %union{
+    struct ast *a;
     double dval;
 }
 
@@ -21,12 +23,12 @@ trunk: NL
     | expr NL              {printf("%f\n", $1);}
 ;
 
-expr: NUM                   {$$ = $1; printf("NUM: %f = %f\n", $$, $1);}
-    | expr ADD expr         {$$ = $1 + $3; printf("ADD\n");}
-    | expr SUB expr         {$$ = $1 - $3; printf("SUB\n");}
-    | expr MUL expr         {$$ = $1 * $3; printf("%f * %f = %f MULP\n", $1, $3, $$);}
-    | expr DIV expr         {$$ = $1 / $3; printf("DIV\n");}
-    | LPAREN expr RPAREN    {$$ = $2;}
+expr:
+    | expr ADD expr         {$$ = newast("ADD", $1, $3); printf("ADD\n");}
+    | expr SUB expr         {$$ = newast("SUB", $1, $3); printf("SUB\n");}
+    | expr MUL expr         {$$ = newast("MUL", $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
+    | expr DIV expr         {$$ = newast("DIV", $1, $3); printf("DIV\n");}
+    | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
 ;
 %%
 
