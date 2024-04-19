@@ -1,6 +1,7 @@
 %{
     #include <stdio.h>
     #define YY_DECL int yylex()
+    #include "Parser.tab.h"
 %}
 
 %%
