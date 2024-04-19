@@ -24,12 +24,12 @@ trunk: NL
 | expr NL {printf("= %i\n", $1);}
 ;
 
-expr: factor
+expr: factor            {$$ = $1;}
 | expr ADD factor       {$$ = $1 + $3;}
 | expr SUB factor       {$$ = $1 - $3;}
 ;
 
-factor: term
+factor: term            {$$ = $1;}
 | factor MUL term       {$$ = $1 * $3;}
 | factor DIV term       {$$ = $1 / $3;}
 ;
