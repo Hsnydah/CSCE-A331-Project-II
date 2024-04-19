@@ -9,7 +9,7 @@
 %%
 [ \t]                       ;
 \n                          {return NL;}
-([\d]+\.[\d]+)?|(\.?[\d]+)? {yylval.ival = atoi(yytext); return NUM;}
+([\d]+\.[\d]+)?|(\.?[\d]+)? {yylval.dval = atoi(yytext); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
 "*"                         {return MUL;}
