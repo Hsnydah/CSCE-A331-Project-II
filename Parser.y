@@ -3,6 +3,7 @@
     #include <std.lib.h>
     extern int yylex();
     extern int yyparse();
+    extern FILE* yyin;
 %}
 
 %union {
@@ -19,21 +20,20 @@
 
 %%
 trunk:
-| trunk expr SEMICOL {printf("= %i\n", $1);}
+| trunk expr SEMICOL    {printf("= %i\n", $1);}
 ;
 
 expr: factor
-| expr ADD factor {$$ = $1 + $3;}
-| expr SUB factor {$$ = $1 - $3;}
+| expr ADD factor       {$$ = $1 + $3;}
+| expr SUB factor       {$$ = $1 - $3;}
 ;
 
 factor: term
-| factor MUL term {$$ = $1 * $3;}
-| factor DIV term {$$ = $1 / $3;}
+| factor MUL term       {$$ = $1 * $3;}
+| factor DIV term       {$$ = $1 / $3;}
 ;
 
-term: INT
-| EQ term {$$ = $1}
+term: INT               {$$ = $1;}
 ;
 %%
 
