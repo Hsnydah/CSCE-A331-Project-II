@@ -21,7 +21,7 @@
 
 %%
 trunk: NL
-    | expr               {printf("%f\n", $1);}
+    | expr NL              {printf("%f\n", $1);}
 ;
 
 expr: NUM                   {$$ = $1; printf("NUM: %f = %f\n", $$, $1);}
