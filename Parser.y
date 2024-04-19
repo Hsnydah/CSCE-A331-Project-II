@@ -1,7 +1,7 @@
 %{
     #include <stdio.h>
     #include <stdlib.h>
-    #include <string>
+    #include <bits/stdc++.h>
     #include <math.h>
     extern int yylex();
     extern int yyparse();
