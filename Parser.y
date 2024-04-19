@@ -34,10 +34,10 @@ expr: INT                       {$$ = $1;}
 ;
 
 flt_expr: FLOAT                 {$$ = (float)$1;}
-    | expr ADD flt_expr         {$$ = $1 + (float)$3;}
-    | expr SUB flt_expr         {$$ = $1 - (float)$3;}
-    | expr MUL flt_expr         {$$ = $1 * (float)$3;}
-    | expr DIV flt_expr         {$$ = $1 / (float)$3;}
+    | expr ADD flt_expr         {$$ = (float)$1 + (float)$3;}
+    | expr SUB flt_expr         {$$ = (float)$1 - (float)$3;}
+    | expr MUL flt_expr         {$$ = (float)$1 * (float)$3;}
+    | expr DIV flt_expr         {$$ = (float)$1 / (float)$3;}
     | flt_expr ADD expr         {$$ = $1 + (float)$3;}
     | flt_expr SUB expr         {$$ = $1 - (float)$3;}
     | flt_expr MUL expr         {$$ = $1 * (float)$3;}
