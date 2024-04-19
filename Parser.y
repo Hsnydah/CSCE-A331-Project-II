@@ -27,7 +27,7 @@ trunk: NL
 expr: 
     | expr ADD expr         {$$ = $1 + $3; printf("ADD\n");}
     | expr SUB expr         {$$ = $1 - $3; printf("SUB\n");}
-    | expr MUL expr         {$$ = $1 * $3; printf("MUL\n");}
+    | expr MUL expr         {$$ = $1 * $3; printf("%f * %f = %f MUL\n", $1, $3, $$);}
     | expr DIV expr         {$$ = $1 / $3; printf("DIV\n");}
     | NUM                   {$$ = $1; printf("NUM\n");}
     | LPAREN expr RPAREN    {$$ = $2;}
