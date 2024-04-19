@@ -1,5 +1,6 @@
 /* interface to the lexer */
 extern int yylineno; /* from lexer */
+void yyerror(char *s, ...);
 /* nodes in the abstract syntax tree */
 struct ast {
  int nodetype;
