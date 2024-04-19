@@ -12,6 +12,7 @@
 } 
 
 %token<ival> INT
+%token<fval> FLOAT
 %left ADD SUB DIV MUL EQ
 %token SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET
 
