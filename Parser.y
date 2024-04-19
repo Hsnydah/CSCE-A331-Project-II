@@ -33,9 +33,9 @@ expr: INT                       {$$ = $1;}
     | LPAREN expr RPAREN        {$$ = $2;}
 ;
 
-flt_expr: INT PER INT           {string flt = $1 + "." + $3; $$ = float.parse(flt);}
-    | INT PER expr              {string flt = $1 + "." + $3; $$ = float.parse(flt);}
-    | expr PER INT              {string flt = $1 + "." + $3; $$ = float.parse(flt);}
+flt_expr: INT PER INT           {string flt = $1 + "." + $3; (float)$$ = float.parse(flt);}
+    | INT PER expr              {string flt = $1 + "." + $3; (float)$$ = float.parse(flt);}
+    | expr PER INT              {string flt = $1 + "." + $3; (float)$$ = float.parse(flt);}
     | expr ADD flt_expr         {$$ = $1 + $3;}
     | expr SUB flt_expr         {$$ = $1 - $3;}
     | expr MUL flt_expr         {$$ = $1 * $3;}
