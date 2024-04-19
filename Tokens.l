@@ -9,8 +9,7 @@
 %%
 [ \t]                       ;
 \n                          {return NL;}
-[0-9]+                      {yylval.ival = atoi(yytext); return INT;}
-"."                         {return PER;}
+[\d]+"."[\d]*? | "."?[\d]+? {yylval.ival = atoi(yytext); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
 "*"                         {return MUL;}
