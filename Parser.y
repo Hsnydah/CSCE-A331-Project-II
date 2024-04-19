@@ -20,7 +20,7 @@
 
 %%
 trunk:
-| trunk expr SEMICOL    {printf("= %i\n", $1);}
+| trunk expr SEMICOL    {printf("= %i\n", $2);}
 ;
 
 expr: factor
