@@ -2,6 +2,7 @@
 
 %{
     #include <stdio.h>
+    #define YY_DECL int yylex()
     #include "Parser.tab.h"
 %}
 
@@ -9,7 +10,7 @@
 [ \t]                   ;
 \n                      {return NL;}
 [0-9]+                  {yylval.ival = atoi(yytext); return INT;}
-[0-9]+\.[0-9]+          {yylval.fval = atoi(yytext); return FLOAT;}
+[0-9]+\.[0-9]+          {yylval.dval = atoi(yytext); return FLOAT;}
 "+"                     {return ADD;}
 "-"                     {return SUB;}
 "*"                     {return MUL;}
