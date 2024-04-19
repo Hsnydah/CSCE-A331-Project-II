@@ -21,7 +21,7 @@
 
 %%
 trunk: NL
-| trunk expr NL {printf("= %d\n", $1);}
+| expr NL {printf("= %d\n", $2);}
 ;
 
 expr: factor
