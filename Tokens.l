@@ -9,7 +9,6 @@
 %%
 [ \t]                   ;
 \n                      {return NL;}
-[a-zA-Z_][a-zA-Z0-9_]*  {return ID;}
 [0-9]+                  {yylval.ival = atoi(yytext); return INT;}
 [0-9]+\.[0-9]+          {yylval.fval = atoi(yytext); return FLOAT;}
 "+"                     {return ADD;}
