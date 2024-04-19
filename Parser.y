@@ -4,6 +4,7 @@
     extern int yylex();
     extern int yyparse();
     extern FILE* yyin;
+    #define YYSTYPE float;
 %}
 
 %union {
@@ -14,7 +15,7 @@
 %token<ival> INT
 %token<fval> FLOAT
 %left ADD SUB DIV MUL EQ
-%token SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
+%token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 
 %type<ival> expr
 %type<fval> flt_expr
@@ -51,6 +52,12 @@ flt_expr: FLOAT                 {$$ = $1;}
 ;
 %%
 
+void yyerror(char *s)
+{
+    fprintf(stderr, "error: %s\n", s);
+    exit(1);
+}
+
 int main (int argc, char **argv)
 {
     yyin = stdin;
@@ -60,10 +67,4 @@ int main (int argc, char **argv)
 	} while(!feof(yyin));
 
     return 0;
-}
-
-void yyerror(char *s)
-{
-    fprintf(stderr, "error: %s\n", s);
-    exit(1);
 }
