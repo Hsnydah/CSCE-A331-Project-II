@@ -12,7 +12,7 @@
 ([\d]+\.[\d]+)|([\d]+)      {yylval.dval = atoi(yytext); printf("%f\n", yylval.dval); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
-\*                         {printf("MUL"); return MUL;}
+\*                         {printf("MULT"); return MUL;}
 "/"                         {return DIV;}
 "="                         {return EQ;}
 ":"                         {return COL;}
