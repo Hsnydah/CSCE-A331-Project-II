@@ -24,10 +24,10 @@ trunk: NL
 ;
 
 expr:
-    | expr ADD expr         {$$ = newast("ADD", $1, $3); printf("ADD\n");}
-    | expr SUB expr         {$$ = newast("SUB", $1, $3); printf("SUB\n");}
-    | expr MUL expr         {$$ = newast("MUL", $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
-    | expr DIV expr         {$$ = newast("DIV", $1, $3); printf("DIV\n");}
+    | expr ADD expr         {$$ = newast('+', $1, $3); printf("ADD\n");}
+    | expr SUB expr         {$$ = newast('-', $1, $3); printf("SUB\n");}
+    | expr MUL expr         {$$ = newast('*', $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
+    | expr DIV expr         {$$ = newast('/', $1, $3); printf("DIV\n");}
     | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
 ;
 %%
