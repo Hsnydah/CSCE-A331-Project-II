@@ -7,21 +7,21 @@
 %}
 
 %%
-[ \t]                   ;
-\n                      {return NL;}
-[0-9]+                  {yylval.ival = atoi(yytext); return INT;}
-[0-9]+(\.[0-9]+)        {yylval.fval = atoi(yytext); return FLOAT;}
-"+"                     {return ADD;}
-"-"                     {return SUB;}
-"*"                     {return MUL;}
-"/"                     {return DIV;}
-"="                     {return EQ;}
-";"                     {return SEMICOL;}
-":"                     {return COL;}
-"("                     {return LPAREN;}
-")"                     {return RPAREN;}
-"{"                     {return LBRACE;}
-"}"                     {return RBRACE;}
-"["                     {return LBRACKET;}
-"]"                     {return RBRACKET;}
+[ \t]                       ;
+\n                          {return NL;}
+[0-9]+                      {yylval.ival = atoi(yytext); return INT;}
+([0-9]*\.[0-9]+|[0-9]+\.)   {yylval.fval = atoi(yytext); return FLOAT;}
+"+"                         {return ADD;}
+"-"                         {return SUB;}
+"*"                         {return MUL;}
+"/"                         {return DIV;}
+"="                         {return EQ;}
+";"                         {return SEMICOL;}
+":"                         {return COL;}
+"("                         {return LPAREN;}
+")"                         {return RPAREN;}
+"{"                         {return LBRACE;}
+"}"                         {return RBRACE;}
+"["                         {return LBRACKET;}
+"]"                         {return RBRACKET;}
 %%
