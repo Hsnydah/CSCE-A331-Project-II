@@ -24,12 +24,11 @@ trunk: NL
     | expr NL               {printf("%f\n", $1);}
 ;
 
-expr: 
+expr: NUM                   {$$ = $1; printf("NUM: %f = %f\n", $$, $1);}
     | expr ADD expr         {$$ = $1 + $3; printf("ADD\n");}
     | expr SUB expr         {$$ = $1 - $3; printf("SUB\n");}
     | expr MUL expr         {$$ = $1 * $3; printf("%f * %f = %f MUL\n", $1, $3, $$);}
     | expr DIV expr         {$$ = $1 / $3; printf("DIV\n");}
-    | NUM                   {$$ = $1; printf("NUM: %f = %f\n", $$, $1);}
     | LPAREN expr RPAREN    {$$ = $2;}
 ;
 %%
