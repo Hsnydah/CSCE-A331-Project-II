@@ -2,7 +2,7 @@
 
 %{
     #include <stdio.h>
-    #define YY_DECL int float yylex()
+    #define YY_DECL float yylex()
     #include "Parser.tab.h"
 %}
 
