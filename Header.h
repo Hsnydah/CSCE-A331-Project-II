@@ -8,9 +8,10 @@ struct ast {
  struct ast *r;
 };
 struct numval {
- int ntype; /* type K for constant */
+ int ntype;
  double num;
 };
 /* build an AST */
 struct ast *newast(int ntype, struct ast *l, struct ast *r);
 struct ast *newnum(double d);
+double calc_rslt(struct ast *);

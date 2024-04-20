@@ -42,7 +42,7 @@ newnum(double d)
 
 double calc_rslt(struct ast *a)
 {
-    double temp;
+    double rslt;
     
     if (!a)
     {
@@ -53,9 +53,26 @@ double calc_rslt(struct ast *a)
     switch(a->ntype)
     {
         case 'NUM':
-            temp = ((struct numval *)a)->num;
+            rslt = ((struct numval *)a)->num;
+            break;
+        case '+':
+            rslt = calc_rslt(a->l) + calc_rslt(a->r);
+            break;
+        case '-':
+            rslt = calc_rslt(a->l) - calc_rslt(a->r);
+            break;
+        case '*':
+            rslt = calc_rslt(a->l) * calc_rslt(a->r);
+            break;
+        case '/':
+            rslt = calc_rslt(a->l) / calc_rslt(a->r);
             break;
     }
     
-    return temp;
+    return rslt;
+}
+
+int main()
+{
+    return yyparse();
 }
