@@ -13,7 +13,7 @@
 
 %token          ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
 %token          IF THEN ELIF ELSE WHILE FOR DO LET
-%token<d>       NUM
+%token <d>      NUM
 %left           ADD SUB DIV MUL EXCL PIPE
 %right          EQ
 
@@ -30,7 +30,7 @@ expr: term
     | LPAREN expr RPAREN    {$$ = $2;}
     | PIPE expr PIPE        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
-    | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
+    | NUM                   {$$ = newnum($1); printf("NUM: %4.4g = %4.4g\n", $$, $1);}
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
