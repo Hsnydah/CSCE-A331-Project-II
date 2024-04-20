@@ -7,4 +7,4 @@ lex.yy.c: Tokens.l Parser.tab.h
 	flex Tokens.l
 
 Compiler: lex.yy.c Parser.tab.c Parser.tab.h
-	gcc Parser.tab.c lex.yy.c -o Compiler -lm
+	gcc Parser.tab.c lex.yy.c Functions.c -o Compiler -lm
