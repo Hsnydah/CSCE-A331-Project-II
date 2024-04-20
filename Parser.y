@@ -8,28 +8,46 @@
 
 %union{
     struct ast *a;
-    double dval;
+    double d;
 }
 
-%token<dval> NUM
-%left ADD SUB DIV MUL EQ
-%token ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
+%token          ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
+%token          IF THEN ELIF ELSE WHILE FOR DO LET
+%token<d>       NUM
+%left           ADD SUB DIV MUL EXCL PIPE
+%right          EQ
 
-%type<a> expr
-%start trunk
+
+%type<a> term stmt expr stmt_list factor
+%type<d> 
+%start function
 
 %%
-trunk:
-    | trunk expr NL              {printf("%4.4g\n", eval($2)); treefree($2);}
+stmt: IF expr THEN 
+
+stmt_list:
+    | stmt_list stmt NL
 ;
 
-expr:
-    | expr ADD expr         {$$ = newast('+', $1, $3); printf("ADD\n");}
-    | expr SUB expr         {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | expr MUL expr         {$$ = newast('*', $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
-    | expr DIV expr         {$$ = newast('/', $1, $3); printf("DIV\n");}
+
+
+expr: term
+    | LPAREN expr RPAREN    {$$ = $2;}
+    | PIPE expr PIPE        {/*insert absolute value function here*/}
+    | expr EXCL             {/*insert factorial function here*/}
     | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
+    | expr PIPE expr        {/*insert or function here*/}
 ;
+
+term: factor
+    | term ADD factor       {$$ = newast('+', $1, $3); printf("ADD\n");}
+    | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
+    | term MUL factor       {$$ = newast('*', $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
+    | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
+
+factor:
+    | ID EQ expr            {/* insert function to assign exprs to ids*/}
+    | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
 %%
 
 void yyerror(char *s)
