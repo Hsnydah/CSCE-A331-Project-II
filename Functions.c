@@ -71,8 +71,3 @@ double calc_rslt(struct ast *a)
     
     return rslt;
 }
-
-int main()
-{
-    return yyparse();
-}

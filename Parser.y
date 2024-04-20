@@ -23,7 +23,7 @@
 
 %%
 function:
-    | expr NL               {printf("= %f\n", eval($1));}
+    | expr NL               {printf("= %f\n", calc_rslt($1));}
 ;
 
 expr: term
