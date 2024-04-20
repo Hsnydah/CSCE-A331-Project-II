@@ -23,7 +23,7 @@
 
 %%
 function:
-    | expr NL               {printf("= %f\n", calc_rslt($1));}
+    | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
 ;
 
 expr: term
@@ -37,7 +37,7 @@ expr: term
 term: factor
     | term ADD factor       {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term MUL factor       {$$ = newast('*', $1, $3); printf("%f * %f = %f MULP\n", $1.num, $3.num, $$);}
+    | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
