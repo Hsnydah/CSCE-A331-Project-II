@@ -35,7 +35,7 @@ newnum(double d)
         yyerror("Out of Memory!\n");
         exit(0);
     }
-    a->ntype = 'NUM';
+    a->ntype = 'N';
     a->num = d;
     return (struct ast *)a;
 }
@@ -52,7 +52,7 @@ double calc_rslt(struct ast *a)
 
     switch(a->ntype)
     {
-        case 'NUM':
+        case 'N':
             rslt = ((struct numval *)a)->num;
             break;
         case '+':
