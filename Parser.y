@@ -23,11 +23,8 @@
 %start function
 
 %%
-stmt: IF expr THEN 
-
-stmt_list:
-    | stmt_list stmt NL
-;
+function:
+    | expr NL               {printf("Finished!\n");}
 
 
 
