@@ -9,7 +9,8 @@ struct ast *
 newast(int nodetype, struct ast *l, struct ast *r)
 {
     struct ast *a = malloc(sizeof(struct ast));
-    if(!a) {
+    if (!a)
+    {
         yyerror("Out of Memory!\n");
         exit(0);
     }
@@ -22,8 +23,9 @@ newast(int nodetype, struct ast *l, struct ast *r)
 struct ast *
 newnum(double d)
 {
-struct numval *a = malloc(sizeof(struct numval));
-    if(!a) {
+    struct numval *a = malloc(sizeof(struct numval));
+    if (!a)
+    {
         yyerror("Out of Memory!\n");
         exit(0);
     }
