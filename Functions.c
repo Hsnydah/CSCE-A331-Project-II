@@ -46,7 +46,7 @@ double calc_rslt(struct ast *a)
     
     if (!a)
     {
-        yyerror("Error: calc_rslt recieved a NULL value.\n");
+        yyerror("calc_rslt recieved a NULL value.\n");
         return 0.0;
     }
 
