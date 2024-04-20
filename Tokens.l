@@ -10,7 +10,7 @@
 [ \t]                       ;
 \n                          {return NL;}
 [a-zA-Z][a-zA-Z0-9_]*       {return ID;}
-([\d]+[\.[\d]+]{0,1})       {yylval.dval = atof(yytext); printf("%f\n", yylval.dval); return NUM;}
+([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); printf("%f\n", yylval.d); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
 "*"                         {printf("MULT"); return MUL;}
