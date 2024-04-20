@@ -9,7 +9,7 @@
 %%
 [ \t]                       ;
 \n                          {return NL;}
-[a-zA-Z][a-zA-Z0-9_]*       {return NAME;}
+[a-zA-Z][a-zA-Z0-9_]*       {return ID;}
 ([\d]+[\.[\d]+]{0,1})       {yylval.dval = atof(yytext); printf("%f\n", yylval.dval); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}

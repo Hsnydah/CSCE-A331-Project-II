@@ -44,10 +44,11 @@ term: factor
     | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term MUL factor       {$$ = newast('*', $1, $3); printf("%f * %f = %f MULP\n", $1, $3, $$);}
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
-
+;
 factor:
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
     | NUM                   {$$ = newnum($1); printf("NUM: %f = %f\n", $$, $1);}
+;
 %%
 
 void yyerror(char *s)
