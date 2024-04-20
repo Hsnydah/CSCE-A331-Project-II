@@ -5,8 +5,14 @@
 #include <math.h>
 #include "Header.h"
 
+void yyerror(char *s)
+{
+    fprintf(stderr, "error: %s\n", s);
+    exit(1);
+}
+
 struct ast *
-newast(int nodetype, struct ast *l, struct ast *r)
+newast(int ntype, struct ast *l, struct ast *r)
 {
     struct ast *a = malloc(sizeof(struct ast));
     if (!a)
@@ -14,7 +20,7 @@ newast(int nodetype, struct ast *l, struct ast *r)
         yyerror("Out of Memory!\n");
         exit(0);
     }
-    a->nodetype = nodetype;
+    a->ntype = ntype;
     a->l = l;
     a->r = r;
     return a;
@@ -29,7 +35,27 @@ newnum(double d)
         yyerror("Out of Memory!\n");
         exit(0);
     }
-    a->nodetype = 'K';
-    a->number = d;
+    a->ntype = 'NUM';
+    a->num = d;
     return (struct ast *)a;
+}
+
+double calc_rslt(struct ast *a)
+{
+    double temp;
+    
+    if (!a)
+    {
+        yyerror("Error: calc_rslt recieved a NULL value.\n");
+        return 0.0;
+    }
+
+    switch(a->ntype)
+    {
+        case 'NUM':
+            temp = ((struct numval *)a)->num;
+            break;
+    }
+    
+    return temp;
 }
