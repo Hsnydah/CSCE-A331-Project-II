@@ -30,7 +30,6 @@ expr: term
     | LPAREN expr RPAREN    {$$ = $2;}
     | PIPE expr PIPE        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
-    | NUM                   {$$ = newnum($1); printf("NUM: %4.4g = %4.4g\n", $$, $1);}
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
