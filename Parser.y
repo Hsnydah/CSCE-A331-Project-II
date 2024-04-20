@@ -19,7 +19,6 @@
 
 
 %type<a> term stmt expr stmt_list factor
-%type<d> 
 %start function
 
 %%
