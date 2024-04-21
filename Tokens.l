@@ -7,7 +7,7 @@
 %}
 
 %%
-([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); printf("%f\n", yylval.d); return NUM;}
+([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); return NUM;}
 "+" |
 "-" |
 "*" |
