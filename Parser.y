@@ -25,18 +25,20 @@ function: /* Do Nothing */
     | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
 ;
 
-expr: term                  {printf("expr:term broke\n");}
-    | '(' expr ')'    {$$ = $2;}
-    | '|' expr '|'        {/*insert absolute value function here*/}
+expr: 
+    | '(' expr ')'          {$$ = $2;}
+    | '|' expr '|'          {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
-    | expr '|' expr        {/*insert or function here*/}
+    | expr '|' expr         {/*insert or function here*/}
+    | term                  {printf("expr:term broke\n");}
 ;
 
-term: factor                {printf("term:factor broke\n");}
+term:
     | term '+' factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term '-' factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term '*' factor       {$$ = newast('*', $1, $3); printf("MULP");}
     | term '/' factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
+    | factor                {printf("term:factor broke\n");}
 ;
 
 factor:
