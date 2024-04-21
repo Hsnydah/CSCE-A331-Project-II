@@ -42,7 +42,7 @@ term: factor
 
 factor: 
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
-    | NUM NL                  {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
+    | NUM NL                  {$$ = newnum($1); printf("NUM: = %4.4g\n", ((struct numval*)$$)->num);}
 ;
 %%
 
