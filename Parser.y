@@ -12,7 +12,7 @@
 }
 
 %token          ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
-//%token          IF THEN ELIF ELSE WHILE FOR DO LET
+%token          IF THEN ELIF ELSE WHILE FOR DO LET
 %token <d>      NUM
 %left           ADD SUB DIV MUL EXCL PIPE
 %right          EQ
