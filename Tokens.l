@@ -7,7 +7,7 @@
 %}
 
 %%
-[ \t]                       {return 0;}
+[ \t]
 \n                          {return NL;}
 [a-zA-Z][a-zA-Z0-9_]*       {return ID;}
 ([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); printf("%f\n", yylval.d); return NUM;}
