@@ -38,9 +38,10 @@ term: factor                {$$ == $1;}
     | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
+    | NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
 ;
 
-factor: NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
+factor: 
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
