@@ -41,7 +41,7 @@ term: factor
 ;
 
 factor: 
-//    | ID EQ expr            {/* insert function to assign exprs to ids*/}
+    | ID EQ expr            {/* insert function to assign exprs to ids*/}
     | NUM                   {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
 ;
 %%
