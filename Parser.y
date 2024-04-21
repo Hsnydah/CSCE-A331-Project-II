@@ -17,7 +17,7 @@
 %right          EQ
 
 
-%type<a> term expr //factor //stmt stmt_list
+%type<a> term expr factor //stmt stmt_list
 %start function
 
 %%
@@ -32,17 +32,17 @@ expr: term
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
-term: NUM                   {printf("NUM"); $$ = newnum($1);}
-    | term ADD term       {$$ = newast('+', $1, $3); printf("ADD\n");}
-    | term SUB term       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term MUL term       {$$ = newast('*', $1, $3); printf("MULP");}
-    | term DIV term       {$$ = newast('/', $1, $3); printf("DIV\n");}
+term:
+    | term ADD factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
+    | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
+    | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
+    | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-//factor://                     {$$ = NULL; printf("broke\n");}
-//    | NUM                   {printf("NUM"); $$ = newnum($1);}
-//    | ID EQ expr            {/* insert function to assign exprs to ids*/}
-//;
+factor://                     {$$ = NULL; printf("broke\n");}
+    | NUM                   {printf("NUM"); $$ = newnum($1);}
+    | ID EQ expr            {/* insert function to assign exprs to ids*/}
+;
 %%
 
 int main (int argc, char **argv)
