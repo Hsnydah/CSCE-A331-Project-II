@@ -5,11 +5,11 @@
 #include <math.h>
 #include "Header.h"
 
-void yyerror(char *s)
-{
-    fprintf(stderr, "error: %s\n", s);
-    exit(1);
-}
+//void yyerror(char *s)
+//{
+//    fprintf(stderr, "error: %s\n", s);
+//    exit(1);
+//}
 
 struct ast *
 newast(int ntype, struct ast *l, struct ast *r)
