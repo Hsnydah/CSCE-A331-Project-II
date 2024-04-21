@@ -3,7 +3,6 @@
     #include <stdlib.h>
     #include <math.h>
     #include "Header.h"
-    extern FILE* yyin;
 %}
 
 %union{
