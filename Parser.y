@@ -33,7 +33,7 @@ expr: term
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
-term: factor                {$$ = $1;}
+term: factor
     | term ADD term         {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term SUB term         {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term MUL term         {$$ = newast('*', $1, $3); printf("MULP");}
