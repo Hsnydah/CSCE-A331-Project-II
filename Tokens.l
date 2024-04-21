@@ -8,20 +8,20 @@
 
 %%
 ([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); printf("%f\n", yylval.d); return NUM;}
-"+"                         {return ADD;}
-"-"                         {return SUB;}
-"*"                         {printf("MULT\n"); return MUL;}
-"/"                         {return DIV;}
+"+" |
+"-" |
+"*" |
+"/" |
+"|" |
+"(" |
+")" { return yytext[0];
 "="                         {return EQ;}
 ":"                         {return COL;}
-"("                         {return LPAREN;}
-")"                         {return RPAREN;}
 "{"                         {return LBRACE;}
 "}"                         {return RBRACE;}
 "["                         {return LBRACKET;}
 "]"                         {return RBRACKET;}
 "!"                         {return EXCL;}
-"|"                         {return PIPE;}
 if                          {return IF;}
 then                        {return THEN;}
 elif                        {return ELIF;}
