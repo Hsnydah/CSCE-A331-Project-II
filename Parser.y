@@ -40,9 +40,8 @@ term: factor
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor: 
+factor: NUM                  {$$ = newnum($1); printf("NUM: = %4.4g\n", ((struct numval *)$$)->num);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
-    | NUM                  {$$ = newnum($1); printf("NUM: = %4.4g\n", ((struct numval *)$$)->num);}
 ;
 %%
 
