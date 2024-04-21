@@ -1,4 +1,4 @@
-%option noyywrap yylineno
+%option noyywrap nodefault yylineno
 
 %{
     #include <stdio.h>
@@ -31,6 +31,7 @@ for                         {return FOR;}
 do                          {return DO;}
 let                         {return LET;}
 "\n"                        {return NL;}
-" "                         {}
+[ \t]                       {}
 [a-zA-Z][a-zA-Z0-9_]*       {return ID;}
+.                           {yyerror("Mystery character %c\n", *yytext);}
 %%
