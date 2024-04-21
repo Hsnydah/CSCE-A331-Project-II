@@ -12,13 +12,13 @@
 }
 
 %token          ID SEMICOL COL LPAREN RPAREN LBRACE RBRACE LBRACKET RBRACKET NL
-%token          IF THEN ELIF ELSE WHILE FOR DO LET
+//%token          IF THEN ELIF ELSE WHILE FOR DO LET
 %token <d>      NUM
 %left           ADD SUB DIV MUL EXCL PIPE
 %right          EQ
 
 
-%type<a> term stmt expr stmt_list factor
+%type<a> term expr factor //stmt stmt_list
 %start function
 
 %%
