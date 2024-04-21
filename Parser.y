@@ -22,27 +22,26 @@
 %start function
 
 %%
-function:
+function: /* Do Nothing */
     | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
 ;
 
-expr: term
+expr: term                  {$$ == $1;}
     | LPAREN expr RPAREN    {$$ = $2;}
     | PIPE expr PIPE        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
-term: factor
+term: factor                {$$ == $1;}
     | term ADD factor       {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor:
+factor: NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
-    | NUM                   {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
 ;
 %%
 
