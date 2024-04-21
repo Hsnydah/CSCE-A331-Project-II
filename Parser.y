@@ -36,7 +36,7 @@ expr:
 term:
     | term '+' factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term '-' factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term '*' factor       {$$ = newast('*', $1, $3); printf("MULP");}
+    | term '*' factor       {$$ = newast('*', $1, $3); printf("MULP: %4.4g\n", calc_rlst($3));}
     | term '/' factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
     | factor                {printf("term:factor broke\n");}
 ;
