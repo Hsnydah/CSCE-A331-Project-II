@@ -37,7 +37,7 @@ newnum(double d)
     }
     a->ntype = 'K';
     a->num = d;
-    printf("%4.4g %4.4g\n", a->num, d);
+    printf("%4.4g\n", d);
     return (struct ast *)a;
 }
 
