@@ -34,13 +34,13 @@ expr: term
 ;
 
 term: factor                {$$ = $1;}
-    | term ADD factor       {$$ = newast('+', $1, $3); printf("ADD\n");}
-    | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
-    | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
+    | term ADD term         {$$ = newast('+', $1, $3); printf("ADD\n");}
+    | term SUB term         {$$ = newast('-', $1, $3); printf("SUB\n");}
+    | term MUL term         {$$ = newast('*', $1, $3); printf("MULP");}
+    | term DIV term         {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor: NUM                  {$$ = newnum($1); printf("NUM: = %4.4g\n", ((struct numval *)$$)->num);}
+factor: NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", ((struct numval *)$$)->num);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
