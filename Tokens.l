@@ -31,5 +31,6 @@ for                         {return FOR;}
 do                          {return DO;}
 let                         {return LET;}
 \n                          {return NL;}
+" "                         {}
 [a-zA-Z][a-zA-Z0-9_]*       {return ID;}
 %%
