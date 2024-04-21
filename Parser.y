@@ -40,7 +40,7 @@ term: factor                {printf("term:factor broke\n");}
 ;
 
 factor:                     //{printf("factor broke\n");}
-    | NUM            {printf("%f", $2); $$ = newnum($2);}
+    | NUM                   {printf("%f", $1); $$ = newnum($1);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
