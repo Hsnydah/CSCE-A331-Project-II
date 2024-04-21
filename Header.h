@@ -3,13 +3,13 @@ extern int yylineno; /* from lexer */
 void yyerror(char *s);
 /* nodes in the abstract syntax tree */
 struct ast {
- int ntype;
- struct ast *l;
- struct ast *r;
+    int ntype;
+    struct ast *l;
+    struct ast *r;
 };
 struct numval {
- int ntype;
- double num;
+    int ntype;
+    double num;
 };
 /* build an AST */
 struct ast *newast(int ntype, struct ast *l, struct ast *r);
