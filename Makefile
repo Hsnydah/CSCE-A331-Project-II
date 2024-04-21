@@ -1,7 +1,7 @@
 all: Compiler
 
 Parser.tab.c Parser.tab.h: Parser.y
-	bison -t -v -d Parser.y
+	bison -t --debug -v -d Parser.y
 
 lex.yy.c: Tokens.l Parser.tab.h
 	flex Tokens.l
