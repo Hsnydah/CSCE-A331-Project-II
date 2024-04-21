@@ -48,6 +48,6 @@ factor:
 
 int main (int argc, char **argv)
 {
-    while(!feof(yyin));
+	yyparse();
     return 0;
 }
