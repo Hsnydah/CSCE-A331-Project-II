@@ -16,6 +16,7 @@
 "(" |
 ")" { return yytext[0];}
 "="                         {return EQ;}
+";"                         {return SEMICOL;}
 ":"                         {return COL;}
 "{"                         {return LBRACE;}
 "}"                         {return RBRACE;}
