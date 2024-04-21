@@ -55,6 +55,7 @@ double calc_rslt(struct ast *a)
     {
         case 'N':
             rslt = ((struct numval *)a)->num;
+            printf("Num Val: %4.4g\n", ((struct numval *)a)->num);
             break;
         case '+':
             rslt = calc_rslt(a->l) + calc_rslt(a->r);
@@ -64,6 +65,7 @@ double calc_rslt(struct ast *a)
             break;
         case '*':
             rslt = calc_rslt(a->l) * calc_rslt(a->r);
+            printf("Left: %4.4g Right: %4.4g\n", calc_rslt(a->l), calc_rslt(a->r));
             break;
         case '/':
             rslt = calc_rslt(a->l) / calc_rslt(a->r);
