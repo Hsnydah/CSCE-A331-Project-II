@@ -17,7 +17,7 @@
 %right          EQ
 
 
-%type<a> term expr factor //stmt stmt_list
+%type <a> term expr factor //stmt stmt_list
 %start function
 
 %%
@@ -41,7 +41,7 @@ term:
     | factor                {printf("term:factor broke\n");}
 ;
 
-factor: NUM                 {printf("Num = %f\n", $1); $$ = newnum($1);}
+factor: NUM                 {$$ = newnum($1);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
