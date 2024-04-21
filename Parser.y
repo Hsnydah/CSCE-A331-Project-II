@@ -39,7 +39,7 @@ term: factor                {printf("term:factor broke\n");}
     | term '/' factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor: NUM                   {printf("Num = %f\n", $1); $$ = newnum($1);}
+factor: factor NUM                   {printf("Num = %f\n", $1); $$ = newnum($1);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
