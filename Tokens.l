@@ -30,8 +30,8 @@ while                       {return WHILE;}
 for                         {return FOR;}
 do                          {return DO;}
 let                         {return LET;}
-"\n"                        {return NL;}
+\n                          {return NL;}
 [ \t]                       {}
 [a-zA-Z][a-zA-Z0-9_]*       {return ID;}
-[.]                           {yyerror("Mystery character %c\n");}
+[.]                         {yyerror("Mystery character %c\n");}
 %%
