@@ -14,7 +14,7 @@
 "/" |
 "|" |
 "(" |
-")" { return yytext[0];
+")" { return yytext[0];}
 "="                         {return EQ;}
 ":"                         {return COL;}
 "{"                         {return LBRACE;}
