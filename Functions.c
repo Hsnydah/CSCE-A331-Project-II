@@ -35,7 +35,7 @@ newnum(double d)
         yyerror("Out of Memory!\n");
         exit(0);
     }
-    a->ntype = 'N';
+    a->ntype = 'K';
     a->num = d;
     printf("%f %f\n", a->num, d);
     return (struct ast *)a;
@@ -53,7 +53,7 @@ double calc_rslt(struct ast *a)
 
     switch(a->ntype)
     {
-        case 'N':
+        case 'K':
             rslt = ((struct numval *)a)->num;
             printf("Num Val: %4.4g\n", ((struct numval *)a)->num);
             break;
