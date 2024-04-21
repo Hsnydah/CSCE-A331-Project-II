@@ -7,11 +7,10 @@
 %}
 
 %%
-
 ([\d]+[\.[\d]+]{0,1})       {yylval.d = atof(yytext); printf("%f\n", yylval.d); return NUM;}
 "+"                         {return ADD;}
 "-"                         {return SUB;}
-"*"                         {printf("MULT"); return MUL;}
+"*"                         {printf("MULT\n"); return MUL;}
 "/"                         {return DIV;}
 "="                         {return EQ;}
 ":"                         {return COL;}

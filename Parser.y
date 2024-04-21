@@ -25,21 +25,21 @@ function: /* Do Nothing */
     | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
 ;
 
-expr: term                  {printf("\nexpr:term broke\n");}
+expr: term                  {printf("expr:term broke\n");}
     | LPAREN expr RPAREN    {$$ = $2;}
     | PIPE expr PIPE        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
     | expr PIPE expr        {/*insert or function here*/}
 ;
 
-term: factor                {printf("\nterm:factor broke\n");}
+term: factor                {printf("term:factor broke\n");}
     | term ADD factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
     | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
     | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
     | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor:                     {printf("\nfactor broke\n");}
+factor:                     {printf("factor broke\n");}
     | factor NUM            {printf("%f", $2); $$ = newnum($2);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
