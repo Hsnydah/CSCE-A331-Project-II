@@ -22,7 +22,7 @@
 
 %%
 function: /* Do Nothing */
-    | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
+    | expr NL               {printf("= %4.4g, %4.4g\n", $1, calc_rslt($1));}
 ;
 
 expr: 
