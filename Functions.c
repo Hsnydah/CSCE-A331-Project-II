@@ -37,6 +37,7 @@ newnum(double d)
     }
     a->ntype = 'N';
     a->num = d;
+    printf("%f %f\n", a->num, d);
     return (struct ast *)a;
 }
 
