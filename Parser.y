@@ -40,7 +40,7 @@ term: factor
     | term DIV term         {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor: NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", calc_rslt($1));}
+factor: NUM                 {$$ = newnum($1); printf("NUM: = %4.4g\n", $1);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
