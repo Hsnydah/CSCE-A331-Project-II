@@ -26,21 +26,21 @@ function: /* Do Nothing */
 ;
 
 expr: term                  {printf("expr:term broke\n");}
-    | LPAREN expr RPAREN    {$$ = $2;}
-    | PIPE expr PIPE        {/*insert absolute value function here*/}
+    | '(' expr ')'    {$$ = $2;}
+    | '|' expr '|'        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
-    | expr PIPE expr        {/*insert or function here*/}
+    | expr '|' expr        {/*insert or function here*/}
 ;
 
 term: factor                {printf("term:factor broke\n");}
-    | term ADD factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
-    | term SUB factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term MUL factor       {$$ = newast('*', $1, $3); printf("MULP");}
-    | term DIV factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
+    | term '+' factor      {$$ = newast('+', $1, $3); printf("ADD\n");}
+    | term '-' factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
+    | term '*' factor       {$$ = newast('*', $1, $3); printf("MULP");}
+    | term '/' factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
 ;
 
-factor:                     {printf("factor broke\n");}
-    | factor NUM            {printf("%f", $2); $$ = newnum($2);}
+factor:                     //{printf("factor broke\n");}
+    | NUM            {printf("%f", $2); $$ = newnum($2);}
     | ID EQ expr            {/* insert function to assign exprs to ids*/}
 ;
 %%
