@@ -26,7 +26,7 @@ function: /* Do Nothing */
     | expr NL               {printf("= %4.4g\n", calc_rslt($1));}
 ;
 
-expr: term                  {$$ == $1;}
+expr: term                  {printf("= %4.4g\n", calc_rslt($1));}
     | LPAREN expr RPAREN    {$$ = $2;}
     | PIPE expr PIPE        {/*insert absolute value function here*/}
     | expr EXCL             {/*insert factorial function here*/}
@@ -48,11 +48,6 @@ factor:
 
 int main (int argc, char **argv)
 {
-    yyin = stdin;
-
-    do {
-		yyparse();
-	} while(!feof(yyin));
-
+    while(!feof(yyin));
     return 0;
 }
