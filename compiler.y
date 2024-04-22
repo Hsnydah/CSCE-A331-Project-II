@@ -12,7 +12,7 @@ int yylex();
 /* yacc definitions */
 %union {int inum; float fnum;}
 %start function
-%token exit
+%token exit_function
 %type<inum> expr term
 %token<inum> int_number
 %token<fnum> float_number
@@ -22,10 +22,10 @@ int yylex();
 %%
 
 function: expr '='                      {printf("%d\n", $1);}
-        | exit ';'                      {exit(0);}
+        | exit_function ';'             {exit(0);}
         /* recursive functions allow for multiple inputs*/
         | function expr '='             {printf("%d\n", $2);}
-        | function exit ';'             {exit(0);}
+        | function exit_function ';'    {exit(0);}
 ;
 
 expr: term                              {$$ = $1;}
