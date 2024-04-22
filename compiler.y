@@ -1,5 +1,6 @@
 /* C declarations */
 %{
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -21,10 +22,10 @@ int yylex();
 
 %%
 
-function: expr '='                      {printf("%d\n", $1);}
+function: expr '='                      {using namespace std; cout << $1 << endl;}
         | exit_function ';'             {exit(0);}
         /* recursive functions allow for multiple inputs*/
-        | function expr '='             {printf("%d\n", $2);}
+        | function expr '='             {using namespace std; cout << $1 << endl;}
         | function exit_function ';'    {exit(0);}
 ;
 
