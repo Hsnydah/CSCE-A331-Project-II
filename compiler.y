@@ -2,8 +2,10 @@
 %{
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <math.h>
 
+void print_float(double num)           {num = floor(num*10 + .5)/10; if (num == (int)num) {cout << (int)num << endl;} else {cout << num << endl;}}
 void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
 int yyparse();
 int yylex();
@@ -20,10 +22,10 @@ int yylex();
 
 %%
 
-function: expr '='                      {printf("%f\n", $1);}
+function: expr '='                      {print_float($1);}
         | exit_function ';'             {exit(0);}
         /* recursive functions allow for multiple inputs*/
-        | function expr '='             {printf("%f\n", $2);}
+        | function expr '='             {print_float($2)}
         | function exit_function ';'    {exit(0);}
 ;
 
