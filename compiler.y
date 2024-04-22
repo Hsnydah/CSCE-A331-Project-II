@@ -1,15 +1,15 @@
 /* C declarations */
 %{
-void print_float(double num)           {num = floor(num * 10 + .5)/10; if (num == (int)num) {printf("%d\n", (int)num);} else {printf("%f\n", (double)num)l;}}
-void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <math.h>
 
+void yyerror (const char *s)           {fprintf(stderr, "error: %s\n", s); exit(1);}
 int yyparse();
 int yylex();
+
+void print_float(double num);           
 %}
 
 /* yacc definitions */
@@ -44,6 +44,16 @@ term: int_number                        {$$ = $1;}
 %%
 
 int main() {
+    void print_float(double num) {
+        num = floor(num * 10 + .5)/10; 
+        if (num == (int)num) {
+            printf("%d\n", (int)num);
+        } 
+        else {
+            printf("%f\n", (double)num)l;
+        }
+    }
+
     yyparse();
     return 0;
 }
