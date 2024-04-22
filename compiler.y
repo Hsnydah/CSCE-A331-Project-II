@@ -1,10 +1,10 @@
 /* C declarations */
 %{
-void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
+void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
 int yyparse();
 int yylex();
 %}
@@ -32,7 +32,7 @@ expr: term                              {$$ = $1;}
     | expr '+' term                     {$$ = $1 + $3;}
     | expr '-' term                     {$$ = $1 - $3;}
     | expr '*' term                     {$$ = $1 * $3;}
-    | expr '/' term                     {if ($3 == 0) {yyerror ("Cannot divide by 0."); exit(0);} else $$ = $1 \ $3;}
+    | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0."); exit(1);} else {$$ = $1 / $3;}}
 ;
 
 term: int_number                        {$$ = $1;}
@@ -43,5 +43,5 @@ term: int_number                        {$$ = $1;}
 
 int main() {
     yyparse();
-    return();
+    return 0;
 }
