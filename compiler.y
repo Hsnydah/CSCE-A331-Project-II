@@ -25,7 +25,7 @@ int yylex();
 function: expr '='                      {using namespace std; cout << $1 << endl;}
         | exit_function ';'             {exit(0);}
         /* recursive functions allow for multiple inputs*/
-        | function expr '='             {using namespace std; cout << $1 << endl;}
+        | function expr '='             {using namespace std; cout << $2 << endl;}
         | function exit_function ';'    {exit(0);}
 ;
 
