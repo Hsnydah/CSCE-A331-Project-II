@@ -1,6 +1,6 @@
 /* C declarations */
 %{
-void yyerror (char *s)
+void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -21,22 +21,22 @@ int yylex();
 
 %%
 
-function: expr '='                      {printf("%d\n", $1)}
+function: expr '='                      {printf("%d\n", $1);}
         | exit ';'                      {exit(0);}
         /* recursive functions allow for multiple inputs*/
-        | function expr '='             {printf("%d\n", $2)}
+        | function expr '='             {printf("%d\n", $2);}
         | function exit ';'             {exit(0);}
 ;
 
 expr: term                              {$$ = $1;}
-    | expr '+' term                     {$$ = $1 + $3}
-    | expr '-' term                     {$$ = $1 - $3}
-    | expr '*' term                     {$$ = $1 * $3}
-    | expr '/' term                     {if ($3 == 0) {yyerror ("Cannot divide by 0."); exit(0);} else $$ = $1 \ $3}
+    | expr '+' term                     {$$ = $1 + $3;}
+    | expr '-' term                     {$$ = $1 - $3;}
+    | expr '*' term                     {$$ = $1 * $3;}
+    | expr '/' term                     {if ($3 == 0) {yyerror ("Cannot divide by 0."); exit(0);} else $$ = $1 \ $3;}
 ;
 
-term: int_number                        {$$ = $1}
-    | float_number                      {$$ = $1}
+term: int_number                        {$$ = $1;}
+    | float_number                      {$$ = $1;}
 ;
 
 %%
