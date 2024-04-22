@@ -16,9 +16,11 @@ void print_float(double num);
 %union {double num;}
 %start function
 %token exit_function
+%token sine cosine tangent
 %type<num> expr term
 %token<num> int_number float_number
 %left '+' '-' '*' '/'
+%left '(' ')'
 %right '='
 
 %%
@@ -35,6 +37,11 @@ expr: term                              {$$ = $1;}
     | expr '-' term                     {$$ = $1 - $3;}
     | expr '*' term                     {$$ = $1 * $3;}
     | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
+    | sine '(' term ')'                 {$$ = sin((double)$3)}
+    | cosine '(' term ')'               {$$ = cos((double)$3)}
+    | tangent '(' term ')'              {$$ = tan((double)$3)}
+    | '(' term ')'                      {$$ = $2}
+
 ;
 
 term: int_number                        {$$ = $1;}
@@ -42,14 +49,13 @@ term: int_number                        {$$ = $1;}
 ;
 
 %%
-
 void print_float(double num) {
     num = floor(num * 10 + .5)/10; 
     if (num == (int)num) {
-        printf("%d\n", (int)num);
+        printf("%d\n\n", (int)num);
     } 
     else {
-        printf("%f\n", (double)num);
+        printf("%f\n\n", num);
     }
 }
 
