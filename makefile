@@ -7,4 +7,4 @@ lex.yy.c: compiler_tokens.l compiler.tab.h
 	flex compiler_tokens.l
 
 compiler: lex.yy.c compiler.tab.c compiler.tab.h
-	g++ compiler.tab.c lex.yy.c -o compiler -lm
+	gcc compiler.tab.c lex.yy.c -o compiler -lm
