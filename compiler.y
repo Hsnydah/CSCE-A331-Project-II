@@ -40,7 +40,7 @@ expr: term                              {$$ = $1;}
     | sine '(' term ')'                 {$$ = sin((double)$3);}
     | cosine '(' term ')'               {$$ = cos((double)$3);}
     | tangent '(' term ')'              {$$ = tan((double)$3);}
-    | '(' term ')'                      {$$ = $2;}
+    | '(' expr ')'                      {$$ = $2;}
 
 ;
 
