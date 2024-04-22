@@ -26,7 +26,7 @@ void print_float(double num);
 function: expr '='                      {print_float($1);}
         | exit_function ';'             {exit(0);}
         /* recursive functions allow for multiple inputs*/
-        | function expr '='             {print_float($2)}
+        | function expr '='             {print_float($2);}
         | function exit_function ';'    {exit(0);}
 ;
 
@@ -50,7 +50,7 @@ int main() {
             printf("%d\n", (int)num);
         } 
         else {
-            printf("%f\n", (double)num)l;
+            printf("%f\n", (double)num);
         }
     }
 
