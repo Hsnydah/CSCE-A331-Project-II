@@ -12,12 +12,11 @@ int yylex();
 %}
 
 /* yacc definitions */
-%union {int inum; float fnum;}
+%union {double num;}
 %start function
 %token exit_function
-%type<inum> expr term
-%token<inum> int_number
-%token<fnum> float_number
+%type<num> expr term
+%token<num> int_number float_number
 %left '+' '-' '*' '/'
 %right '='
 
