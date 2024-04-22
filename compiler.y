@@ -5,7 +5,7 @@
 #include <iostream>
 #include <math.h>
 
-void yyerror (char *s)                 {fprintf(stderr, "error: %s\n", s); exit(1);}
+void yyerror (string s)                 {std::cout << "error: " << s << std::endl; exit(1);}
 int yyparse();
 int yylex();
 %}
