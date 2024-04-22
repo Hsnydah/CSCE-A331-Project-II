@@ -1,53 +1,72 @@
-%{
-    #include <stdio.h>
-    #include <stdlib.h>
-    #include <math.h>
-    #include "Header.h"
+{
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "Header.h"
+
+void yyerror(char *s);
+struct ast *newast(int ntype, struct ast *l, struct ast *r);
+struct ast *newnum(double d);
+struct ast *newassign(char *var_name, struct ast *expr);
+double calc_rslt(struct ast *);
+
+extern int yylineno;
+extern int yylex();
 %}
 
-%union{
-    struct ast *a;
-    double d;
+%union {
+	struct ast *a;
+	double d;
 }
 
-%token          ID SEMICOL COL LBRACE RBRACE LBRACKET RBRACKET NL '(' ')' '|'
-%token          IF THEN ELIF ELSE WHILE FOR DO LET
-%token <d>      NUM
-%left           '+' '-' '*' '/' EXCL
-%right          EQ
+%token ID SEMICOL COL LBRACE RBRACE LBRACKET RBRACKET NL '(' ')' '|'
+%token IF THEN ELIF ELSE WHILE FOR DO LET NUM
+%left '+' '-'
+%left '*' '/'
+%right EXCL
+%right EQ
 
+%type <a> expr term factor
 
-%type <a> term expr factor //stmt stmt_list
 %start function
 
 %%
-function: /* Do Nothing */
-    | expr NL               {printf("= %4.4g, %4.4g\n", $1, calc_rslt($1));}
-;
 
-expr: 
-    | '(' expr ')'          {$$ = $2;}
-    | '|' expr '|'          {/*insert absolute value function here*/}
-    | expr EXCL             {/*insert factorial function here*/}
-    | expr '|' expr         {/*insert or function here*/}
-    | term                  {printf("expr:term broke\n");}
-;
+function:
+	/* Do Nothing */
+
+| expr NL { printf("= %4.4g\n", calc_rslt($1)); }
+	;
+
+expr:
+	| term  { $$ = $1; }
+	| ID EQ expr { $$ = newassign($1, $3); }
+	| expr '+' term { $$ = newast('+', $1, $3); }
+	| expr '-' term { $$ = newast('-', $1, $3); }
+	;
 
 term:
-    | term '+' factor       {$$ = newast('+', $1, $3); printf("ADD\n");}
-    | term '-' factor       {$$ = newast('-', $1, $3); printf("SUB\n");}
-    | term '*' factor       {$$ = newast('*', $1, $3); printf("MULP: %4.4g\n", calc_rslt($3));}
-    | term '/' factor       {$$ = newast('/', $1, $3); printf("DIV\n");}
-    | factor                {printf("term:factor broke\n");}
-;
+	| factor { $$ = $1; }
+	| term '*' factor { $$ = newast('*', $1, $3); }
+	| term '/' factor { $$ = newast('/', $1, $3); }
+	;
 
-factor: NUM                 {printf("newnum\n"); $$ = newnum($1);}
-    | ID EQ expr            {/* insert function to assign exprs to ids*/}
-;
+factor:
+	| NUM   { $$ = newnum(yylval.d); }
+	| '|' expr '|'  { /* insert absolute value function here */ }
+	| expr EXCL 	{ /* insert factorial function here */ }
+	| '(' expr ')'  { $$ = $2; }
+	;
+
 %%
 
-int main (int argc, char **argv)
-{
-	yyparse();
-    return 0;
+void yyerror(char *s) {
+	fprintf(stderr, "error: %s\n", s);
+	exit(1);
 }
+
+int main(int argc, char **argv) {
+	yyparse();
+	return 0;
+}
+
