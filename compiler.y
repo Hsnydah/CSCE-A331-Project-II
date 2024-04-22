@@ -32,7 +32,7 @@ expr: term                              {$$ = $1;}
     | expr '+' term                     {$$ = $1 + $3}
     | expr '-' term                     {$$ = $1 - $3}
     | expr '*' term                     {$$ = $1 * $3}
-    | expr '/' term                     {if ($3 == 0) {yyerror ("Cannot divide by 0."); exit(0);} else $$ = $1 + $2}
+    | expr '/' term                     {if ($3 == 0) {yyerror ("Cannot divide by 0."); exit(0);} else $$ = $1 \ $3}
 ;
 
 term: int_number                        {$$ = $1}
