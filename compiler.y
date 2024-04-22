@@ -50,10 +50,9 @@ term: int_number                        {$$ = $1;}
 
 %%
 void print_float(double num) {
-    num = floor(num * 10 + .5)/10; 
-    if (num == (int)num) {
+    if (floor(num) == num) {
         printf("%d\n\n", (int)num);
-    } 
+    }
     else {
         printf("%f\n\n", num);
     }
