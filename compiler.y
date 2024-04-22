@@ -37,10 +37,10 @@ expr: term                              {$$ = $1;}
     | expr '-' term                     {$$ = $1 - $3;}
     | expr '*' term                     {$$ = $1 * $3;}
     | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
-    | sine '(' term ')'                 {$$ = sin((double)$3)}
-    | cosine '(' term ')'               {$$ = cos((double)$3)}
-    | tangent '(' term ')'              {$$ = tan((double)$3)}
-    | '(' term ')'                      {$$ = $2}
+    | sine '(' term ')'                 {$$ = sin((double)$3);}
+    | cosine '(' term ')'               {$$ = cos((double)$3);}
+    | tangent '(' term ')'              {$$ = tan((double)$3);}
+    | '(' term ')'                      {$$ = $2;}
 
 ;
 
