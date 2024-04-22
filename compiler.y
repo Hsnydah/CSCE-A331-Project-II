@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-void yyerror (const char *s)           {fprintf(stderr, "error: %s\n", s);}
+void yyerror (const char *s)           {fprintf(stderr, "error: %s\n", s); exit(1);}
 int yyparse();
 int yylex();
 
