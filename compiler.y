@@ -17,7 +17,7 @@ void print_result(double num);
 %token exit_function
 %token sine cosine tangent pi
 %type<num> expr term nterm
-%token<num> int_number float_number
+%token<num> int_number float_number pi
 %left '+' '-' '*' '/' '^' '%'
 %left '(' ')'
 %right '='
@@ -52,7 +52,7 @@ nterm: '-' term                         {$$ = 0 - $2;}
 
 term: int_number                        {$$ = $1;}
     | float_number                      {$$ = $1;}
-    | pi                                {$$ = (double)3.14159265358979323846;}
+    | pi                                {$$ = $1;}
 ;
 
 %%

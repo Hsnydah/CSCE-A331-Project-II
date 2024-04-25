@@ -13,7 +13,7 @@
 [0-9]+[.][0-9]+     {yylval.num = atof(yytext); return float_number;}
 [ \t\n]             ;
 [.]+                {yyerror("Mystery character.");}
-"pi"                {return pi;}
+"pi"                {yylval.num = 3.14159265358979323846; return pi;}
 
 %%
 
