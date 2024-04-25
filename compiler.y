@@ -44,7 +44,7 @@ expr: term                              {$$ = $1;}
     | sine '(' term ')'                 {$$ = sin((double)$3);}
     | cosine '(' term ')'               {$$ = cos((double)$3);}
     | tangent '(' term ')'              {$$ = tan((double)$3);}
-    | nterm                             {$$ = $1}
+    | nterm                             {$$ = $1;}
 ;
 
 nterm: '-' term                         {$$ = 0 - $2;}
