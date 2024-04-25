@@ -35,7 +35,7 @@ expr: term                              {$$ = $1;}
     | '(' expr ')'                      {$$ = $2;}
     /*simple calculator functions*/
     | expr '+' term                     {$$ = $1 + $3;}
-    | expr nterm                        {$$ = $1 + $3;}
+    | expr nterm                        {$$ = $1 + $2;}
     | expr '*' term                     {$$ = $1 * $3;}
     | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
     | expr '^' term                     {$$ = pow($1, $3);}
@@ -47,7 +47,7 @@ expr: term                              {$$ = $1;}
 
 ;
 
-nterm: '-' term
+nterm: '-' term                         {$$ = 0 - $2;}
 
 term: int_number                        {$$ = $1;}
     | float_number                      {$$ = $1;}
