@@ -41,9 +41,9 @@ expr: term                              {$$ = $1;}
     | expr '^' term                     {$$ = pow($1, $3);}
     | expr '%' term                     {$$ = fmod($1, $3);}
     /*trigonometry functions*/
-    | sine '(' term ')'                 {$$ = sin((double)$3);}
-    | cosine '(' term ')'               {$$ = cos((double)$3);}
-    | tangent '(' term ')'              {$$ = tan((double)$3);}
+    | sine '(' expr ')'                 {$$ = sin((double)$3);}
+    | cosine '(' expr ')'               {$$ = cos((double)$3);}
+    | tangent '(' expr ')'              {$$ = tan((double)$3);}
     | nterm                             {$$ = $1;}
 ;
 
