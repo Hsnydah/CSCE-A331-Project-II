@@ -45,9 +45,9 @@ expr: term                              {$$ = $1;}
     | sine '(' expr ')'                 {$$ = sin((double)$3);}
     | cosine '(' expr ')'               {$$ = cos((double)$3);}
     | tangent '(' expr ')'              {$$ = tan((double)$3);}
-    | cosecant '(' expr ')'             {$$ = (double)1/(sin((double)$3));}
-    | secant '(' expr ')'               {$$ = (double)1/(cos((double)$3));}
-    | cotangent '(' expr ')'            {$$ = (double)1/(tan((double)$3));}
+    | cosecant '(' expr ')'             {$$ = 1/(sin((double)$3));}
+    | secant '(' expr ')'               {$$ = 1/(cos((double)$3));}
+    | cotangent '(' expr ')'            {$$ = 1/(tan((double)$3));}
 ;
 
 term: int_number                        {$$ = $1;}
