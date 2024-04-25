@@ -16,7 +16,7 @@ void print_result(double num);
 %start function
 %token exit_function
 %token sine cosine tangent
-%type<num> expr term nterm
+%type<num> expr term
 %token<num> int_number float_number pi
 %left '+' '-' '*' '/' '^' '%'
 %left '(' ')'
@@ -32,22 +32,19 @@ function: expr '='                      {print_result($1);}
 ;
 
 expr: term                              {$$ = $1;}
+    | '-' expr                          {$$ = 0 - $2;}
     | '(' expr ')'                      {$$ = $2;}
     /*simple calculator functions*/
-    | expr '+' term                     {$$ = $1 + $3;}
-    | expr nterm                        {$$ = $1 + $2;}
-    | expr '*' term                     {$$ = $1 * $3;}
-    | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
-    | expr '^' term                     {$$ = pow($1, $3);}
-    | expr '%' term                     {$$ = fmod($1, $3);}
+    | expr '+' expr                     {$$ = $1 + $3;}
+    | expr '-' expr                     {$$ = $1 - $3;}
+    | expr '*' expr                     {$$ = $1 * $3;}
+    | expr '/' expr                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
+    | expr '^' expr                     {$$ = pow($1, $3);}
+    | expr '%' expr                     {$$ = fmod($1, $3);}
     /*trigonometry functions*/
     | sine '(' expr ')'                 {$$ = sin((double)$3);}
     | cosine '(' expr ')'               {$$ = cos((double)$3);}
     | tangent '(' expr ')'              {$$ = tan((double)$3);}
-    | nterm                             {$$ = $1;}
-;
-
-nterm: '-' term                         {$$ = 0 - $2;}
 ;
 
 term: int_number                        {$$ = $1;}
