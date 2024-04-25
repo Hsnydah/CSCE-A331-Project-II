@@ -15,7 +15,7 @@ void print_result(double num);
 %union {double num;}
 %start function
 %token exit_function
-%token sine cosine tangent
+%token sine cosine tangent cosecant secant cotangent
 %type<num> expr term
 %token<num> int_number float_number pi
 %left '+' '-' '*' '/' '^' '%'
@@ -45,6 +45,9 @@ expr: term                              {$$ = $1;}
     | sine '(' expr ')'                 {$$ = sin((double)$3);}
     | cosine '(' expr ')'               {$$ = cos((double)$3);}
     | tangent '(' expr ')'              {$$ = tan((double)$3);}
+    | cosecant '(' expr ')'             {$$ = cosec((double)$3);}
+    | secant '(' expr ')'               {$$ = sec((double)$3);}
+    | cotangent '(' expr ')'            {$$ = cot((double)$3);}
 ;
 
 term: int_number                        {$$ = $1;}
