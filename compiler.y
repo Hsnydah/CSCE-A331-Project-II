@@ -44,15 +44,15 @@ expr: term                              {$$ = $1;}
     | sine '(' term ')'                 {$$ = sin((double)$3);}
     | cosine '(' term ')'               {$$ = cos((double)$3);}
     | tangent '(' term ')'              {$$ = tan((double)$3);}
-
+    | nterm                             {$$ = $1}
 ;
 
 nterm: '-' term                         {$$ = 0 - $2;}
+;
 
 term: int_number                        {$$ = $1;}
     | float_number                      {$$ = $1;}
-    | pi                                {$$ = (double)3.14159265358979323846}
-    
+    | pi                                {$$ = (double)3.14159265358979323846;}
 ;
 
 %%
