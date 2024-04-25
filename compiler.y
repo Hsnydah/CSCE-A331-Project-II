@@ -15,7 +15,7 @@ void print_result(double num);
 %union {double num;}
 %start function
 %token exit_function
-%token sine cosine tangent pi
+%token sine cosine tangent
 %type<num> expr term nterm
 %token<num> int_number float_number pi
 %left '+' '-' '*' '/' '^' '%'
