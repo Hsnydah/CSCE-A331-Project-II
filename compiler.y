@@ -15,8 +15,8 @@ void print_result(double num);
 %union {double num;}
 %start function
 %token exit_function
-%token sine cosine tangent
-%type<num> expr term
+%token sine cosine tangent pi
+%type<num> expr term nterm
 %token<num> int_number float_number
 %left '+' '-' '*' '/' '^' '%'
 %left '(' ')'
@@ -35,7 +35,7 @@ expr: term                              {$$ = $1;}
     | '(' expr ')'                      {$$ = $2;}
     /*simple calculator functions*/
     | expr '+' term                     {$$ = $1 + $3;}
-    | expr '-' term                     {$$ = $1 - $3;}
+    | expr nterm                        {$$ = $1 + $3;}
     | expr '*' term                     {$$ = $1 * $3;}
     | expr '/' term                     {if ($3 == 0) {yyerror("Cannot divide by 0.");} else {$$ = $1 / $3;}}
     | expr '^' term                     {$$ = pow($1, $3);}
@@ -47,8 +47,12 @@ expr: term                              {$$ = $1;}
 
 ;
 
+nterm: '-' term
+
 term: int_number                        {$$ = $1;}
     | float_number                      {$$ = $1;}
+    | pi                                {$$ = (double)3.14159265358979323846}
+    
 ;
 
 %%
